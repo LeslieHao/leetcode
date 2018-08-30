@@ -14,7 +14,7 @@ public class RemoveNthFromEnd {
         说明：给定的 n 保证是有效的。
         进阶：你能尝试使用一趟扫描实现吗
      */
-    public static ListNode removeNthFromEnd(ListNode head, int n) {
+    private static ListNode removeNthFromEnd(ListNode head, int n) {
         if (head.next == null && n == 1) {
             return null;
         }
