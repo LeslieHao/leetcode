@@ -33,4 +33,21 @@ public class Tree {
     }
 
 
+    /**
+     * 是否是二叉搜素树
+     * @param root
+     * @return
+     */
+    public boolean isValidBST(TreeNode root) {
+        return judge(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+
+    private boolean judge(TreeNode root, int minValue, int maxValue) {
+        if (root == null) return true;
+        if (root.val <= minValue || root.val >= maxValue) return false;
+        return judge(root.left, minValue, root.val) && judge(root.right, root.val, maxValue);
+    }
+
+
 }
