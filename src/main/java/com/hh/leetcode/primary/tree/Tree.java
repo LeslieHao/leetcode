@@ -1,9 +1,5 @@
 package com.hh.leetcode.primary.tree;
 
-import com.sun.jmx.remote.internal.ArrayQueue;
-import sun.misc.Queue;
-
-import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
