@@ -14,9 +14,10 @@ public class MaxProfit {
      * 输出: 7解释: 在第 2 天（股票价格 = 1）的时候买入，
      * 在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。
      * 随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。
-     * @param prices
+     * @param prices 股票价格
      * @return
      */
+
     public static int maxProfit(int[] prices) {
         // 当出现比买入值大的 且后一天比当前小的 卖出
 
@@ -32,8 +33,7 @@ public class MaxProfit {
         for (int i = 0; i < prices.length - 1; i++) {
             if (!buyFlag) {
                 // 如果当前价格前后的都小 买入
-                if ((i > 0 && prices[i] < prices[i - 1] && prices[i + 1] > prices[i])
-                        || prices[i] < prices[i + 1]) {
+                if (prices[i] < prices[i + 1]) {
                     priceIn = prices[i];
                     buyFlag = true;
                 }

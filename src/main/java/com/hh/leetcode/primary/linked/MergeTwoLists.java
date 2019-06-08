@@ -1,6 +1,5 @@
 package com.hh.leetcode.primary.linked;
 
-import java.util.logging.Level;
 
 /**
  * @author HaoHao

@@ -1,5 +1,7 @@
 package com.hh.leetcode.primary.linked;
 
+import java.util.Stack;
+
 /**
  * @author HaoHao
  * @Description: 请判断一个链表是否为回文链表。
@@ -8,6 +10,7 @@ package com.hh.leetcode.primary.linked;
  */
 public class IsPalindrome {
 
+
     public static void main(String[] args) {
         ListNode node = new ListNode(1);
         node.next = new ListNode(0);
@@ -15,7 +18,7 @@ public class IsPalindrome {
         isPalindrome(node);
     }
 
-    public static boolean isPalindrome(ListNode head) {
+    private static boolean isPalindrome(ListNode head) {
         if (head == null) {
             return true;
         }
@@ -30,46 +33,27 @@ public class IsPalindrome {
         // bmw 一次走两个节点
         // 开车
 
-        while (bmw.next!=null&&bmw.next.next != null) {
-            honda = head.next;
+        Stack<ListNode> stack = new Stack<>();
+        stack.push(honda);
+        while (bmw.next != null && bmw.next.next != null) {
+            honda = honda.next;
             bmw = bmw.next.next;
+            stack.push(honda);
         }
-
-        // 此时 本田飞度走到终点或者终点左面的节点(偶数个节点时)
-
-
-       //链表逆序
-        ListNode reverse = reverseList(honda.next);
-
-        honda.next = null;
-        while (head.next != null) {
-            if (head.val != reverse.val) {
+        // 此时飞度走到中点
+        // 奇数个节点,宝马刚好走到尾节点
+        if (bmw.next == null) {
+            stack.pop();
+        }
+        while (honda.next != null) {
+            honda = honda.next;
+            if (honda.val != stack.pop().val) {
                 return false;
             }
-            reverse = reverse.next;
-            head = head.next;
         }
+
         return true;
     }
 
-    public static ListNode reverseList(ListNode head) {
-        if (head == null) {
-            return null;
-        }
 
-        ListNode pre = head;
-        ListNode cur = pre.next;
-        ListNode next;
-
-        while (cur != null) {
-            next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
-        }
-
-        head.next = null;
-
-        return pre;
-    }
 }
