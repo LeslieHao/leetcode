@@ -12,8 +12,8 @@ public class GetIntersectionNode {
         // 求出长度差h
         int A = 0;
         int B = 0;
-        ListNode shortList = null;
-        ListNode longList = null;
+        ListNode tempA = headA;
+        ListNode tempB = headB;
         // 高度差
         int h = 0;
         while (headA != null) {
@@ -25,41 +25,51 @@ public class GetIntersectionNode {
             headB = headB.next;
         }
         if (A > B) {
-            longList = headA;
-            shortList = headB;
             h = A - B;
+            return getNode(tempB, tempA, h);
         } else {
             h = B - A;
-            longList = headB;
-            shortList = headA;
+            return getNode(tempA, tempB, h);
         }
 
+
+    }
+
+    private static ListNode getNode(ListNode shortList, ListNode longList, int h) {
         while (h != 0) {
-            shortList = shortList.next;
+            longList = longList.next;
             h--;
         }
 
         while (shortList != null) {
-            if (shortList == longList||shortList.val==longList.val) {
+            if (shortList == longList || shortList.val == longList.val) {
                 return shortList;
             }
             shortList = shortList.next;
             longList = longList.next;
         }
         return null;
-
     }
 
     public static void main(String[] args) {
-        //ListNode a = new ListNode(4);
-        //ListNode a = new ListNode(1);
-        //ListNode a = new ListNode(8);
-        //ListNode a = new ListNode(4);
-        //ListNode a = new ListNode(5);
-        //ListNode a = new ListNode(4);
-        //ListNode a = new ListNode(4);
-        //ListNode a = new ListNode(4);
+        ListNode a = new ListNode(4);
+        ListNode b = new ListNode(1);
+        ListNode c = new ListNode(8);
+        ListNode d = new ListNode(4);
+        ListNode e = new ListNode(5);
 
+
+        ListNode f = new ListNode(5);
+        ListNode g = new ListNode(0);
+        a.next = b;
+        b.next = c;
+        c.next = d;
+        d.next = e;
+
+        f.next = g;
+        g.next = b;
+
+        getIntersectionNode(a, f);
     }
 
 }
