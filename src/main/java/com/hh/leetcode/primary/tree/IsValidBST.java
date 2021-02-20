@@ -42,18 +42,27 @@ public class IsValidBST {
      * @param root
      * @return
      */
-    public boolean isValidBST(TreeNode root) {
-        return judge(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    public static boolean isValidBST(TreeNode root) {
+        return judge(root,Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
 
-    private boolean judge(TreeNode root, int minValue, int maxValue) {
+    private static boolean judge(TreeNode root, long minValue, long maxValue) {
         if (root == null) {
             return true;
         }
         if (root.val <= minValue || root.val >= maxValue) {
             return false;
         }
+        // 递归左子树,上界为root val,
+        // 递归右子数,下界为root val
         return judge(root.left, minValue, root.val) && judge(root.right, root.val, maxValue);
+    }
+
+    public static void main(String[] args) {
+        Integer[] arr = {2, 1, 4};
+        TreeNode treeByArr = TreeUtils.transfer(arr);
+        System.out.println(isValidBST(treeByArr));
+
     }
 }
