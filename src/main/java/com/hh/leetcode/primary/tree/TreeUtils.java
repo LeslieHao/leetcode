@@ -1,6 +1,8 @@
 package com.hh.leetcode.primary.tree;
 
 
+import com.hh.leetcode.TreeNode;
+
 /**
  * Author:liuyu
  * Date:2019-02-21

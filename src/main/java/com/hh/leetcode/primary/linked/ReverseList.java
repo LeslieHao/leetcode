@@ -1,5 +1,7 @@
 package com.hh.leetcode.primary.linked;
 
+import com.hh.leetcode.ListNode;
+
 /**
  * @author HaoHao
  * @Description: 反转一个单链表。
@@ -38,6 +40,22 @@ public class ReverseList {
 
         head.next = null;
 
+        return pre;
+    }
+
+
+    public ListNode reverseList1(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur!= null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
         return pre;
     }
 }

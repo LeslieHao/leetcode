@@ -1,5 +1,7 @@
 package com.hh.leetcode.primary.linked;
 
+import com.hh.leetcode.ListNode;
+
 import java.util.Stack;
 
 /**

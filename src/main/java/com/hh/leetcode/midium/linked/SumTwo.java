@@ -1,6 +1,6 @@
 package com.hh.leetcode.midium.linked;
 
-import com.hh.leetcode.primary.linked.ListNode;
+import com.hh.leetcode.ListNode;
 
 /**
  *

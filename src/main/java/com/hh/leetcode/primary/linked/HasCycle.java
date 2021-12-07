@@ -1,5 +1,10 @@
 package com.hh.leetcode.primary.linked;
 
+import com.hh.leetcode.ListNode;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 环形链表
  *
@@ -23,14 +28,23 @@ public class HasCycle {
         }
         return false;
     }
+    public static boolean hasCycle1(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null) {
+            return false;
+        }
+        Set<ListNode> set = new HashSet<>();
+        while (head != null) {
+            if (set.contains(head)) {
+                return true;
+            }
+            set.add(head);
+            head = head.next;
+        }
+        return false;
+    }
 
 
     public static void main(String[] args) {
-        ListNode n = new ListNode(1);
-        ListNode n2 = new ListNode(2);
-        n.next = n2;
-        n2.next = n;
-        hasCycle(n);
     }
 
 }

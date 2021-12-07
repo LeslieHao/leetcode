@@ -1,6 +1,6 @@
 package com.hh.leetcode.midium.linked;
 
-import com.hh.leetcode.primary.linked.ListNode;
+import com.hh.leetcode.ListNode;
 
 /**
  * @author HaoHao
@@ -79,7 +79,7 @@ public class GetIntersectionNode {
         }
 
         while (shortList != null) {
-            if (shortList == longList || shortList.val == longList.val) {
+            if (shortList == longList) {
                 return shortList;
             }
             shortList = shortList.next;

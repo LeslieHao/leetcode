@@ -1,8 +1,6 @@
 package com.hh.leetcode.primary.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import com.hh.leetcode.TreeNode;
 
 /**
  * @author HaoHao
