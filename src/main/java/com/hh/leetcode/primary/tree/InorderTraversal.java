@@ -1,7 +1,6 @@
 package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
-import com.hh.leetcode.hard.TreeUtils;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class InorderTraversal {
         while (!stack.isEmpty() || cur != null) {
             // 左根右
             while (cur != null) {
-                // 没课子树.左一直到底,然后根 然后右子树
+                // 每棵子树.左一直到底,然后根 然后右子树
                 stack.push(cur);
                 cur = cur.left;
             }

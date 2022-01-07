@@ -1,12 +1,8 @@
 package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
-import com.hh.leetcode.hard.TreeUtils;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * 二叉树后序遍历
@@ -20,6 +16,7 @@ public class PostorderTraversal {
 
     /**
      * 左右根
+     *
      * @param root
      * @return
      */
@@ -37,33 +34,45 @@ public class PostorderTraversal {
         result.add(root.val);
     }
 
+    /**
+     * 前序遍历顺序为：根 -> 左 -> 右
+     * 后序遍历顺序为：左 -> 右 -> 根
+     * 如果1： 我们将前序遍历中节点插入结果链表尾部的逻辑，修改为将节点插入结果链表的头部
+     * 那么结果链表就变为了：右 -> 左 -> 根
+     * 如果2： 我们将遍历的顺序由从左到右修改为从右到左，配合如果1
+     * 那么结果链表就变为了：左 -> 右 -> 根
+     * 这刚好是后序遍历的顺序
+     * 基于这两个思路，我们想一下如何处理：
+     * 修改前序遍历代码中，节点写入结果链表的代码，将插入队尾修改为插入队首
+     * 修改前序遍历代码中，每次先查看左节点再查看右节点的逻辑，变为先查看右节点再查看左节点
+     *
+     */
     public static List<Integer> postorderTraversal2(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
+        LinkedList<Integer> result = new LinkedList<>();
 
         Deque<TreeNode> stack = new ArrayDeque<>();
 
-        TreeNode child = root;
 
-        while (!stack.isEmpty() || child != null) {
-            while (child != null) {
-                // 左
-                stack.push(child);
-                child = child.left;
-            }
-            TreeNode node = stack.pop();
-            if (node.right == null) {
-                result.add(node.val);
+        while (!stack.isEmpty() || root != null) {
+            if (root != null) {
+                // 右子树
+                stack.push(root);
+                result.addFirst(root.val);
+                root = root.right;
             } else {
-                child = node.right;
+                TreeNode pop = stack.pop();
+                root = pop.left;
             }
         }
         return result;
     }
 
+
     /**
      *    4
-     *  7  2
+     *  7   2
      * 3 4
+     *
      * @param args
      */
     public static void main(String[] args) {

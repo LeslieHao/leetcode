@@ -2,9 +2,7 @@ package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author HaoHao
@@ -12,38 +10,40 @@ import java.util.List;
  */
 public class LevelOrder {
 
-    /**
-     * 二叉树层序遍历
-     *
-     * @param root
-     * @return
-     */
-    public List<List<Integer>> levelOrder(TreeNode root) throws InterruptedException {
+    public static List<List<Integer>> levelOrder2(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
-        // 队列来保存每一行所有的节点
-        LinkedList queue = new LinkedList();
-        // 先将根节点入队
-        queue.add(root);
-        //返回结果
         List<List<Integer>> result = new ArrayList<>();
-        // 当前行不为空 循环继续
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
         while (!queue.isEmpty()) {
-            // 当前行节点的个数
-            int len = queue.size();
-            // 行
-            List<Integer> row = new ArrayList<>();
-            // 遍历当前行 放入行结果,并将每个的节点的左右节点放入队列
-            while (0 < len--) {
-                TreeNode node = (TreeNode) queue.poll();
-                row.add(node.val);
-                if (node.left != null) queue.add(node.left);
-                if (node.right != null) queue.add(node.right);
+            List<Integer> level = new ArrayList<>();
+            int size = queue.size();
+            while (size > 0) {
+                TreeNode node = queue.poll();
+                // 当前层
+                level.add(node.val);
+                // 下一层
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                --size;
             }
-            result.add(row);
+            result.add(level);
         }
 
         return result;
     }
+
+    public static void main(String[] args) {
+        TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5});
+        System.out.println(levelOrder2(transfer));
+    }
+
+
 }

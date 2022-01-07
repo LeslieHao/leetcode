@@ -1,7 +1,6 @@
 package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
-import com.hh.leetcode.hard.TreeUtils;
 
 /**
  * 验证二叉搜索树
@@ -48,6 +47,21 @@ public class IsValidBST {
         return judge(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
+
+
+    private static boolean judge(TreeNode root, long minValue, long maxValue) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val <= minValue || root.val >= maxValue) {
+            return false;
+        }
+        // 递归左子树,上界为root val,
+        // 递归右子数,下界为root val
+        return judge(root.left, minValue, root.val) && judge(root.right, root.val, maxValue);
+    }
+
+
     static long preVal = Long.MIN_VALUE;
 
     public static boolean isValidBST2(TreeNode root) {
@@ -67,19 +81,6 @@ public class IsValidBST {
         preVal = root.val;
 
         return isValidBST2(root.right);
-    }
-
-
-    private static boolean judge(TreeNode root, long minValue, long maxValue) {
-        if (root == null) {
-            return true;
-        }
-        if (root.val <= minValue || root.val >= maxValue) {
-            return false;
-        }
-        // 递归左子树,上界为root val,
-        // 递归右子数,下界为root val
-        return judge(root.left, minValue, root.val) && judge(root.right, root.val, maxValue);
     }
 
     public static void main(String[] args) {

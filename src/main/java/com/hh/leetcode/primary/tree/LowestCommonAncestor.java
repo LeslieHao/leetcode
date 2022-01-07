@@ -1,7 +1,6 @@
 package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
-import com.hh.leetcode.hard.TreeUtils;
 
 /**
  * 235. 二叉搜索树的最近公共祖先
@@ -76,6 +75,26 @@ public class LowestCommonAncestor {
             }
         }
     }
+
+
+    /**
+     * 非二叉搜索树
+     */
+    public TreeNode lowestCommonAncestorNotSearch(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestorNotSearch(root.left, p, q);
+        TreeNode right = lowestCommonAncestorNotSearch(root.right, p, q);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        return root;
+    }
+
 
     public static void main(String[] args) {
         Integer[] arr = {6, 2, 8, 0, 4, 7, 9, null, null, 3, 5};

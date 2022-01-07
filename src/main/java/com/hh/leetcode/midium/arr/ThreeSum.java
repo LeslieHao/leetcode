@@ -75,6 +75,48 @@ public class ThreeSum {
         return result;
     }
 
+    public static List<List<Integer>> threeSum3(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        // 排序,然后枚举a,然后从后面找b+c=-a
+        if (nums.length < 3) {
+            return result;
+        }
+        // 排序
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            // 去重
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            // 左右下标向中间汇聚
+            int l = i + 1;
+            int r = nums.length - 1;
+            if (l > (nums.length - 1)) {
+                break;
+            }
+            int curSum = nums[i] + nums[l] + nums[r];
+            while (l != r) {
+                if (curSum > 0) {
+                    // 大于零,r向左
+                    r--;
+                } else if (curSum < 0) {
+                    // 小于0 l向右
+                    l++;
+                } else {
+                    // =0
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]);
+                    list.add(nums[l]);
+                    list.add(nums[r]);
+                    result.add(list);
+                    l++;
+                }
+                curSum = nums[i] + nums[l] + nums[r];
+            }
+        }
+        return result;
+    }
+
 
     public static List<List<Integer>> threeSum2(int[] nums) {
         if (nums.length < 3) {
@@ -114,8 +156,8 @@ public class ThreeSum {
 
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 1, 3, -2, -1};
-        System.out.println(threeSum2(nums));
+        int[] nums = {0, 0, 0, 1, 2,-2};
+        System.out.println(threeSum3(nums));
 
     }
 }
