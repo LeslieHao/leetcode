@@ -50,10 +50,18 @@ public class TreeUtils {
             int height = result.size();
             List<String> levelList = result.get(i);
             StringBuilder level = new StringBuilder();
-            for (String s : levelList) {
-                int duration = height / levelList.size();
+
+            for (int j = 0; j < levelList.size(); j++) {
+                // 计算间隔
+                int duration = 0;
+                if (j == 0) {
+                    // 第一个节点
+                    duration = (int) (Math.pow(2, height - i - 1) - 1);
+                } else {
+                    duration = (int) (Math.pow(2, height - i) - 1);
+                }
                 StringBuilder sb = getPreBlank(duration);
-                level.append(sb.append(s));
+                level.append(sb.append(levelList.get(j)));
             }
             System.out.println(level);
         }
@@ -62,18 +70,23 @@ public class TreeUtils {
     private static StringBuilder getPreBlank(int duration) {
         StringBuilder sb = new StringBuilder();
         for (int j = 0; j < duration; j++) {
-            sb.append("*");
+            sb.append(" ");
         }
         return sb;
     }
 
     public static void main(String[] args) {
-        TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5});
+        TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
         printTree(transfer);
-
-        System.out.println("*****1*****");
-        System.out.println("**2*****2**");
-        System.out.println("*3*3***2*2*");
+        //System.out.println("***1*******");
+        //System.out.println("*2***2***");
+        //System.out.println("3*3*2*2*");
+        //
+        //
+        //System.out.println("*******1*******");
+        //System.out.println("***2*******2***");
+        //System.out.println("*3***3***2***2*");
+        //System.out.println("3*3*2*2*3*3*2*2");
     }
 
 
