@@ -30,9 +30,9 @@ import java.util.List;
  */
 public class GenerateParenthesis {
 
-    List<String> res = new ArrayList<>();
+    static List<String> res = new ArrayList<>();
 
-    public List<String> generateParenthesis(int n) {
+    public static List<String> generateParenthesis(int n) {
         if (n <= 0) {
             return res;
         }
@@ -40,24 +40,23 @@ public class GenerateParenthesis {
         return res;
     }
 
-    private void getParenthesis(String str, int left, int right) {
+    private static void getParenthesis(String str, int left, int right) {
         if (left == 0 && right == 0) {
             res.add(str);
             return;
         }
-        if (left == right) {
-            // 剩余左右括号相等,下一个只能是左
+
+        if (left > 0) {
             getParenthesis(str + "(", left - 1, right);
-        } else if (left < right) {
-            // 剩的右括号比左括号多,可以用左也可以用右
-            if (left > 0) {
-                getParenthesis(str + "(", left - 1, right);
-            }
+        }
+        // 剩的右括号比左括号多,多余
+        if (left < right) {
             getParenthesis(str + ")", left, right - 1);
         }
+
     }
 
-    public void main(String[] args) {
-        System.out.println(generateParenthesis(5));
+    public static void main(String[] args) {
+        System.out.println(generateParenthesis(3));
     }
 }
