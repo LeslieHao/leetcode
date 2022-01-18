@@ -18,6 +18,7 @@ package com.hh.leetcode.Recursion;
  */
 public class FIb {
 
+     static int i = 0;
     /**
      * f(n)= f(n-1)+f(n-2)
      */
@@ -25,6 +26,8 @@ public class FIb {
         if (n <= 1) {
             return n;
         }
+        System.out.println(i++);
+
         return fib(n - 1) + fib(n - 2);
     }
 
@@ -42,6 +45,6 @@ public class FIb {
     }
 
     public static void main(String[] args) {
-        System.out.println(fib2(2));
+        System.out.println(fib(7));
     }
 }
