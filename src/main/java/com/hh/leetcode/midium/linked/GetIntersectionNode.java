@@ -24,7 +24,7 @@ public class GetIntersectionNode {
         while (pa != pb) {
             if (pa == null) {
                 pa = headB;
-            }else {
+            } else {
                 pa = pa.next;
             }
 
@@ -38,13 +38,13 @@ public class GetIntersectionNode {
     }
 
 
-
-        /**
-         * 这种解法只适合仅当相交时值相等的情况
-         * @param headA
-         * @param headB
-         * @return
-         */
+    /**
+     * 这种解法只适合仅当相交时值相等的情况
+     *
+     * @param headA
+     * @param headB
+     * @return
+     */
     public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         // 求出长度差h
         int A = 0;
