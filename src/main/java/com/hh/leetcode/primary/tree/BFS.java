@@ -15,6 +15,11 @@ import java.util.Queue;
  */
 public class BFS {
 
+    /**
+     * 层序遍历
+     * @param root
+     * @return
+     */
     public static List<TreeNode> bfs(TreeNode root) {
         List<TreeNode> res = new ArrayList<>();
         Queue<TreeNode> queue = new ArrayDeque<>();

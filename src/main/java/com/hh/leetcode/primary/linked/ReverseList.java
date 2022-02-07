@@ -50,8 +50,27 @@ public class ReverseList {
         }
         ListNode pre = null;
         ListNode cur = head;
-        while (cur!= null) {
+        while (cur != null) {
             ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
+
+    public ListNode reverseList2(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode pre=null;
+        ListNode cur = head;
+
+        while (cur != null) {
+            // 暂存当前节点的下一个节点(因为要替换指针)
+            ListNode next = cur.next;
+            // 当前节点只想前一个节点
             cur.next = pre;
             pre = cur;
             cur = next;
