@@ -2,6 +2,8 @@ package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
 
+import java.util.LinkedList;
+
 /**
  * 给定一个二叉树，编写一个函数来获取这个树的最大宽度。树的宽度是所有层中的最大宽度。这个二叉树与满二叉树（full binary tree）结构相同，但一些节点为空。
  *
@@ -69,11 +71,48 @@ import com.hh.leetcode.TreeNode;
  */
 public class MaxWidth {
 
+    /**
+     * 层序遍历
+     * 每个结点的值用不上，把值改成每个结点的序号索引，根据完全二叉树的性质进行编号，编号规则：
+     * 根节点编号为0，左孩子编号为根节点编号2，右孩子编号为根节点编号2+1，逐层往下编号;
+     * 每层编号的时候为了防止编号值过大，将每层第一个元素的值设置为offset偏移量，每层的后序结点的值减去这个offset，保持相对关系不变。
+     * 每层遍历结束，更新res，res就是每层最后一个结点编号-第一个结点编号+1
+     *
+     */
     public static int widthOfBinaryTree(TreeNode root) {
-        return -1;
+        if (root == null) {
+            return 0;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        root.val = 0;
+        int res = 0;
+        while (!queue.isEmpty()) {
+            TreeNode first = queue.getFirst();
+            TreeNode last = queue.getLast();
+            // 每层的队尾和队首相减
+            int temp = last.val - first.val + 1;
+            if (temp > res) {
+                res = temp;
+            }
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = queue.poll();
+                if (poll.left != null) {
+                    poll.left.val = poll.val * 2;
+                    queue.add(poll.left);
+                }
+                if (poll.right != null) {
+                    poll.right.val = poll.val * 2 + 1;
+                    queue.add(poll.right);
+                }
+            }
+        }
+
+        return res;
     }
     public static void main(String[] args) {
-        TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5,6,7});
+        TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4});
         System.out.println(widthOfBinaryTree(transfer));
     }
 }

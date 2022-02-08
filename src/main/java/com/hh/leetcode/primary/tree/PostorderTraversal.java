@@ -68,6 +68,27 @@ public class PostorderTraversal {
     }
 
 
+
+    public static List<Integer> postorderTraversal3(TreeNode root){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        if (root == null) {
+            return linkedList;
+        }
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            linkedList.addFirst(pop.val);
+            if (pop.left != null) {
+                stack.push(pop.left);
+            }
+            if (pop.right != null) {
+                stack.push(pop.right);
+            }
+        }
+        return linkedList;
+    }
+
     /**
      *    4
      *  7   2
@@ -78,7 +99,7 @@ public class PostorderTraversal {
     public static void main(String[] args) {
         Integer[] arr = {4, 7, 2, 3, 4};
         TreeNode tree = TreeUtils.transfer(arr);
-        System.out.println(postorderTraversal2(tree));
+        System.out.println(postorderTraversal3(tree));
     }
 
 

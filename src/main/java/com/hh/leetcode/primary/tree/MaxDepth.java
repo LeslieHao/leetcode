@@ -3,7 +3,7 @@ package com.hh.leetcode.primary.tree;
 import com.hh.leetcode.TreeNode;
 
 import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Queue;
 
 /**
  * 给定一个二叉树，找出其最大深度。
@@ -31,54 +31,59 @@ import java.util.Deque;
  * @author HaoHao
  * @date 2018/9/26下午4:27
  */
-public class Depth {
+public class MaxDepth {
 
     /**
-     * 二叉树最大深度
-     *
-     * @param root
-     * @return
+     * 深度优先递归
+     * <p>
+     * O(n)
+     * O(height) 深度决定递归栈大小
      */
     public static int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int leftDepth = maxDepth(root.left);
-        int rightDepth = maxDepth(root.right);
-        return Math.max(leftDepth, rightDepth) + 1;
+        int leftHeight = maxDepth(root.left);
+        int rightHeight = maxDepth(root.right);
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     /**
-     * 层序遍历
+     * 广度优先 迭代
+     *
+     * @param root
+     * @return
      */
-    public static int maxDepth2(TreeNode root) {
+    public static int maxDepth3(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        Deque<TreeNode> queue = new ArrayDeque<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
-        int level = 0;
+        int depth = 0;
         while (!queue.isEmpty()) {
-            // 当前层节点个数
             int size = queue.size();
             while (size > 0) {
-                TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.add(node.left);
+                size--;
+                TreeNode poll = queue.poll();
+                if (poll.left != null) {
+                    queue.add(poll.left);
                 }
-                if (node.right != null) {
-                    queue.add(node.right);
+                if (poll.right != null) {
+                    queue.add(poll.right);
                 }
-                --size;
+                if (size == 0) {
+                    depth++;
+                }
             }
-            level++;
         }
-        return level;
+        return depth;
     }
+
+
 
     public static void main(String[] args) {
         TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5});
-        System.out.println(maxDepth2(transfer));
     }
 
 

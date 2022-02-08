@@ -32,7 +32,7 @@ public class Generate {
                 } else {
                     // 上一层
                     List<Integer> lastLevel = result.get(i-1);
-                    // 上一层的j-1+j
+                    // 上一层的j-1 +j
                     int thisValue = lastLevel.get(j - 1) + lastLevel.get(j);
                     level.add(thisValue);
                 }

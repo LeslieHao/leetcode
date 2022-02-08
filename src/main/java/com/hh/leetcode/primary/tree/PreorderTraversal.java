@@ -8,6 +8,8 @@ import java.util.Deque;
 import java.util.List;
 
 /**
+ * 先序遍历 实际就是dfs
+ *
  * @author HaoHao
  * @date 2021/12/20 12:17 上午
  */
@@ -61,6 +63,24 @@ public class PreorderTraversal {
             }
         }
         return list;
+    }
+
+    public static List<Integer> preorderTraversal3(TreeNode root){
+        List<Integer> res = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            res.add(pop.val);
+            if (pop.right != null) {
+                stack.push(pop.right);
+            }
+            // 始终保持左孩子在栈顶,下一层循环还是左孩子在栈顶
+            if (pop.left != null) {
+                stack.push(pop.left);
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {

@@ -2,10 +2,7 @@ package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * 二叉树中序遍历
@@ -29,29 +26,22 @@ import java.util.List;
 public class InorderTraversal {
 
 
-    public static List<Integer> inorderTraversal(TreeNode root) {
-        // 结果集
-        List<Integer> list = new ArrayList<>();
-        if (root == null) {
-            return list;
-        }
+    public static List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
 
         Deque<TreeNode> stack = new ArrayDeque<>();
-        TreeNode cur = root;
-        while (!stack.isEmpty() || cur != null) {
-            // 左根右
-            while (cur != null) {
-                // 每棵子树.左一直到底,然后根 然后右子树
-                stack.push(cur);
-                cur = cur.left;
+        while (root != null || !stack.isEmpty()) {
+            // 左
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
             }
-            TreeNode node = stack.pop();
-            list.add(node.val);
-            if (node.right != null) {
-                cur = node.right;
-            }
+            TreeNode pop = stack.pop();
+            res.add(pop.val);
+            // 如果有为空就会在下一层继续pop
+            root = pop.right;
         }
-        return list;
+        return res;
     }
 
 
@@ -78,15 +68,16 @@ public class InorderTraversal {
     }
 
     /**
-     *    4
-     *  7  2
+     * 4
+     * 7  2
      * 3 4
+     *
      * @param args
      */
     public static void main(String[] args) {
         Integer[] arr = {4, 7, 2, 3, 4};
         TreeNode tree = TreeUtils.transfer(arr);
-        System.out.println(inorderTraversal(tree));
+        System.out.println(inorderTraversal2(tree));
     }
 
 }
