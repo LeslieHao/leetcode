@@ -14,6 +14,38 @@ import com.hh.leetcode.ListNode;
  */
 public class ReverseList {
 
+    public static ListNode reverseList3(ListNode head){
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // 上一个节点,也是当前链表的头结点
+        ListNode pre = null;
+        // 当前遍历到的节点
+        ListNode cur = head;
+        while (cur != null) {
+            // 当前节点的下一个节点
+            ListNode next = cur.next;
+            // 当前节点的变为反转链表的头结点
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
+    public static void main(String[] args) {
+        ListNode head1 = new ListNode(1);
+        ListNode head2 = new ListNode(2);
+        ListNode head3 = new ListNode(3);
+        ListNode head4 = new ListNode(4);
+        head1.next = head2;
+        head2.next = head3;
+        head3.next = head4;
+        System.out.println(reverseList3(head1).val);
+
+    }
+
+
     /*
         pre cur next
          1   2   3      1->2->3->4->5

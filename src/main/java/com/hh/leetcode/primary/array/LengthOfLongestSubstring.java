@@ -1,4 +1,4 @@
-package com.hh.leetcode.midium.arr;
+package com.hh.leetcode.primary.array;
 
 /**
  * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。

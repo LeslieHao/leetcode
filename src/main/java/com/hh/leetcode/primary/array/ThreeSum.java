@@ -1,4 +1,4 @@
-package com.hh.leetcode.midium.arr;
+package com.hh.leetcode.primary.array;
 
 import java.util.*;
 

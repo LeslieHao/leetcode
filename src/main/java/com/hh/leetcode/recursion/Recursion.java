@@ -1,4 +1,4 @@
-package com.hh.leetcode.Recursion;
+package com.hh.leetcode.recursion;
 
 /**
  * @author HaoHao
