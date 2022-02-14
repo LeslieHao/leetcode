@@ -2,6 +2,8 @@ package com.hh.leetcode.primary.linked;
 
 import com.hh.leetcode.ListNode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -14,10 +16,64 @@ public class IsPalindrome {
 
 
     public static void main(String[] args) {
-        ListNode node = new ListNode(1);
-        node.next = new ListNode(0);
-        node.next.next = new ListNode(1);
-        isPalindrome(node);
+        ListNode node = new ListNode(0);
+        node.next = new ListNode(1);
+        node.next.next = new ListNode(2);
+        node.next.next.next = new ListNode(1);
+        node.next.next.next.next = new ListNode(0);
+        node.next.next.next.next.next = new ListNode(0);
+        System.out.println(isPalindrome3(node));
+    }
+
+    private static boolean isPalindrome2(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+        List<Integer> list = new ArrayList<>();
+        while (head != null) {
+            list.add(head.val);
+            head = head.next;
+        }
+        for (int i = 0; i < list.size() / 2; i++) {
+            int j = list.size() - i - 1;
+            if (!list.get(i).equals(list.get(j))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean isPalindrome3(ListNode head) {
+        // 快慢指针,快指针到头,慢指针到中点
+        ListNode slow = head;
+        ListNode fast = head;
+
+        ListNode pre = null;
+        ListNode cur = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+
+            // 反转前半部分链表
+            cur.next = pre;
+            pre = cur;
+            cur = slow;
+        }
+
+
+        if (fast != null) {
+            // 奇数
+            slow = slow.next;
+        }
+
+        while (pre != null && slow != null) {
+            if (pre.val != slow.val) {
+                return false;
+            }
+            pre = pre.next;
+            slow = slow.next;
+        }
+        return true;
     }
 
     private static boolean isPalindrome(ListNode head) {
