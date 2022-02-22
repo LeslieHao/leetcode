@@ -83,10 +83,22 @@ public class PreorderTraversal {
         return res;
     }
 
+    public static void print(TreeNode treeNode) {
+        if (treeNode == null) {
+            return;
+        }
+        System.out.println(treeNode.val);
+        print(treeNode.left);
+        System.out.println(treeNode.val);
+        print(treeNode.right);
+        System.out.println(treeNode.val);
+
+    }
+
     public static void main(String[] args) {
-        Integer[] arr = {4, 7, 2, 3, 4};
+        Integer[] arr = {1, 2, 3, 4, 5, 6, 7};
         TreeNode tree = TreeUtils.transfer(arr);
-        System.out.println(preorderTraversal2(tree));
+        print(tree);
     }
 
 

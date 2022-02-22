@@ -44,14 +44,14 @@ public class IsBalanced {
      * 自底向上
      */
 
-    boolean res = true;
+    static boolean res = true;
 
-    public boolean isBalanced1(TreeNode root) {
+    public static boolean isBalanced1(TreeNode root) {
         helper(root);
         return res;
     }
 
-    public int helper(TreeNode root) {
+    public static int helper(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -62,6 +62,5 @@ public class IsBalanced {
         }
         return Math.max(left, right);
     }
-
 
 }

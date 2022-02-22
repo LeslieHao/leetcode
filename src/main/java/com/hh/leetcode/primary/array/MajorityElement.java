@@ -56,7 +56,7 @@ public class MajorityElement {
      * <p>
      * 无论数组是1 2 1 2 1，亦或是1 2 2 1 1，总能得到正确的候选人。
      */
-    public int majorityElement1(int[] nums) {
+    public static int majorityElement1(int[] nums) {
         int count = 0;
         int cur = nums[0];
         for (int i = 0; i < nums.length; i++) {
@@ -67,7 +67,17 @@ public class MajorityElement {
                 count = 1;
             }
         }
-        return cur;
+        count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == cur) {
+                count++;
+            }
+        }
+        return count > nums.length / 2 ? cur : -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(majorityElement1(new int[]{1, 2, 3}));
     }
 
     public int majorityElement2(int[] nums) {

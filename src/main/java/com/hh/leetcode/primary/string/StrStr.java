@@ -77,6 +77,6 @@ public class StrStr {
     }
 
     public static void main(String[] args) {
-        System.out.println(strStr("asd", "c"));
+        //System.out.println(strStr("asd", "c"));
     }
 }

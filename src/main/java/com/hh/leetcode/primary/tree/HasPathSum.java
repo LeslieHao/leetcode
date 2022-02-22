@@ -13,7 +13,7 @@ import java.util.Queue;
  * <p>
  * 叶子节点 是指没有子节点的节点。
  *
- * @author HaoHao
+ * @author HaoHaojava
  * @date 2022/2/7 8:23 下午
  */
 public class HasPathSum {
