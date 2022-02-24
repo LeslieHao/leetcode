@@ -65,12 +65,70 @@ public class TreePractice {
         }
     }
 
+    static int preValue;
+
+    public static boolean isBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        // 中序遍历
+        boolean f1 = isBST(root.left);
+        if (!f1) {
+            return false;
+        }
+        if (root.val <= preValue) {
+            return false;
+        } else {
+            preValue = root.val;
+        }
+        return isBST(root.right);
+    }
+
+    public static int countNode(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int l = countNode(root.left);
+        int r = countNode(root.right);
+        return l + r + 1;
+    }
+
+
+    static boolean res = true;
+
+    public static boolean isBalance(TreeNode root) {
+        helper(root);
+        return res;
+    }
+
+    private static int helper(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int l = helper(root.left) + 1;
+        int r = helper(root.right) + 1;
+        if (Math.abs(l - r) > 1) {
+            res = false;
+            return 0;
+        }
+        return Math.max(l, r);
+    }
+
+    public static int maxDepth(TreeNode root){
+        if (root == null) {
+            return 0;
+        }
+        int l = maxDepth(root.left);
+        int r = maxDepth(root.right);
+        return Math.max(l, r) + 1;
+    }
+
 
     public static void main(String[] args) {
-        TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5, 6, 7});
-        preOrder(transfer);
-        //inOrder(transfer);
-        //postOrder(transfer);
+        TreeNode transfer = TreeUtils.transfer(new Integer[]{3, 1, 4, 5, 4, 5});
+        //System.out.println(isBST(transfer));
+        System.out.println(countNode(transfer));
     }
 
 }

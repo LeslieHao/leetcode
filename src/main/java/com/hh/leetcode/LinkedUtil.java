@@ -17,6 +17,13 @@ public class LinkedUtil {
         return fake.next;
     }
 
+    public static void print(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val);
+            head = head.next;
+        }
+    }
+
     public static void main(String[] args) {
         ListNode listNode = arrToLinked(new int[]{1, 2, 3, 4, 5});
         System.out.println(listNode);
