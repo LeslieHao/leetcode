@@ -12,6 +12,45 @@ import java.util.Deque;
  */
 public class TreePractice {
 
+    /**
+     * 4(2(3)(1))(6(5))
+     * <p>
+     * 4
+     * /   \
+     * 2     6
+     * / \   /
+     * 3   1 5
+     */
+    public static TreeNode str2tree(String s) {
+        if (s == null || s.length() == 0) {
+            return null;
+        }
+        char[] chars = s.toCharArray();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode root = new TreeNode(Integer.parseInt(String.valueOf(chars[0])));
+        stack.push(root);
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i] == '(') {
+                TreeNode node = new TreeNode(Integer.parseInt(String.valueOf(chars[i + 1])));
+                if (chars[i - 1] == ')') {
+                    // 右孩子
+                    stack.peek().right = node;
+                } else {
+                    // 左孩子
+                    stack.peek().left = node;
+                }
+                stack.push(node);
+            } else if (chars[i] == ')') {
+                stack.pop();
+            }
+        }
+        return root;
+    }
+
+    public static void main(String[] args) {
+        TreeUtils.printTree(str2tree("4(2(3)(1))(6(5))"));
+    }
+
 
     public static void preOrder(TreeNode root) {
         // 先序遍历,根左右
@@ -115,7 +154,7 @@ public class TreePractice {
         return Math.max(l, r);
     }
 
-    public static int maxDepth(TreeNode root){
+    public static int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -124,11 +163,5 @@ public class TreePractice {
         return Math.max(l, r) + 1;
     }
 
-
-    public static void main(String[] args) {
-        TreeNode transfer = TreeUtils.transfer(new Integer[]{3, 1, 4, 5, 4, 5});
-        //System.out.println(isBST(transfer));
-        System.out.println(countNode(transfer));
-    }
 
 }
