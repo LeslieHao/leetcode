@@ -1,5 +1,7 @@
 package com.hh.leetcode.primary.array;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -87,7 +89,31 @@ public class Stack2Queue {
         return s1.empty() && s2.isEmpty();
     }
 
-    public static void main(String[] args) {
 
+    Deque<Integer> stack1 = new LinkedList<>();
+
+    Deque<Integer> stack2 = new LinkedList<>();
+
+
+    public void appendTail(int value) {
+        stack1.push(value);
+    }
+
+    public int deleteHead() {
+        if(stack2.isEmpty()){
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.pop();
+
+    }
+
+    public static void main(String[] args) {
+        Stack2Queue stack2Queue = new Stack2Queue();
+        //stack2Queue.appendTail(1);
+        //stack2Queue.appendTail(2);
+        //stack2Queue.appendTail(3);
+        System.out.println(stack2Queue.deleteHead());
     }
 }

@@ -1,5 +1,6 @@
 package com.hh.leetcode.primary.array;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,8 +38,22 @@ public class TwoSum {
         return null;
     }
 
+    public static int[] twoSum2 (int[] numbers, int target) {
+        // write code here
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i = 0;i<numbers.length;i++){
+            int cur=numbers[i];
+            if(map.containsKey(cur)){
+                return new int[]{map.get(cur),i+1};
+            }else{
+                map.put(target-cur,i+1);
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        twoSum(new int[]{3, 2, 4}, 6);
+        System.out.println(Arrays.toString(twoSum2(new int[]{3, 2, 4}, 6)));
     }
 
 }

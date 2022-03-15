@@ -47,8 +47,17 @@ public class Step {
         return b;
     }
 
+    public static int climbStairs2(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        return climbStairs1(n - 1) + climbStairs1(n - 2);
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(climbStairs1(3));
+        System.out.println(climbStairs1(5));
+        System.out.println(climbStairs2(5));
     }
 
 

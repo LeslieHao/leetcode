@@ -37,9 +37,6 @@ import java.util.Queue;
  * myStack.pop(); // 返回 2
  * myStack.empty(); // 返回 False
  *
- * 来源：力扣（LeetCode）
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- *
  * @author HaoHao
  * @date 2021/12/16 9:20 下午
  */
