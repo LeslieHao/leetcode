@@ -3,6 +3,8 @@ package com.hh.leetcode.primary.array;
 import java.util.*;
 
 /**
+ * 15. 三数之和
+ *
  * 给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
  * <p>
  * 注意：答案中不可以包含重复的三元组。
@@ -158,6 +160,7 @@ public class ThreeSum {
     public static void main(String[] args) {
         int[] nums = {0, 0, 0, 1, 2,-2};
         System.out.println(threeSum3(nums));
+        char a = '1';
 
     }
 }

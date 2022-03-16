@@ -1,7 +1,6 @@
 package com.hh.leetcode.primary.string;
 
 /**
- * 409. 最长回文串
  * <p>
  * 给定一个包含大写字母和小写字母的字符串s，返回通过这些字母构造成的 最长的回文串。
  * <p>
