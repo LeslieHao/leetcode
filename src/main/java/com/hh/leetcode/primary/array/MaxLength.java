@@ -21,6 +21,7 @@ import java.util.Map;
  */
 public class MaxLength {
 
+    // 1 2 3 2 1 0
     public int maxLength(int[] arr) {
         // write code here
         if (arr.length == 0) {

@@ -44,6 +44,7 @@ public class LengthOfLongestSubstring {
                 dic[chars[i]] = 1;
             } else {
                 left = i;
+                dic = new int[256];
                 dic[chars[i]] = 1;
             }
             count = Math.max(count, right - left + 1);
@@ -53,6 +54,6 @@ public class LengthOfLongestSubstring {
     }
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(lengthOfLongestSubstring("abcabcd"));
     }
 }

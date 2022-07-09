@@ -3,6 +3,7 @@ package com.hh.leetcode.primary.tree;
 import com.hh.leetcode.TreeNode;
 
 import java.util.ArrayDeque;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -84,6 +85,16 @@ public class MaxDepth {
 
     public static void main(String[] args) {
         TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5});
+
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+        priorityQueue.add(2);
+        priorityQueue.add(1);
+        priorityQueue.add(3);
+        if (priorityQueue.size() == 3) {
+            priorityQueue.poll();
+        }
+        priorityQueue.add(4);
+        System.out.println(priorityQueue.poll());
     }
 
 

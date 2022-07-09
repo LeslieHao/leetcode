@@ -47,8 +47,9 @@ public class TreeSerialize {
 
     public static void main(String[] args) {
         TreeNode transfer = TreeUtils.transfer(new Integer[]{1, 2, 3, null, 4, 5});
-        //String serialize = serialize(transfer);
-        //System.out.println(serialize);
+        TreeSerialize treeSerialize = new TreeSerialize();
+        String serialize = treeSerialize.serialize(transfer);
+        System.out.println(serialize);
         //TreeUtils.printTree(deserialize(serialize));
     }
 }

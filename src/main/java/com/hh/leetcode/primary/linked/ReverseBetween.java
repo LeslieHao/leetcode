@@ -44,13 +44,14 @@ public class ReverseBetween {
         // write code here
         ListNode none = new ListNode(-1);
         none.next = head;
-        ListNode pre = head;
+        ListNode pre = none;
 
         for (int i = 0; i < m - 1; i++) {
             pre = pre.next;
         }
 
         // 反转头插
+        // pre 始终保存前一个节点,不断从后面移动到pre.next
         ListNode cur = pre.next;
         for (int i = 0; i < n - m; i++) {
             ListNode next = cur.next;
@@ -68,9 +69,8 @@ public class ReverseBetween {
     public static void main(String[] args) {
         ListNode node = LinkedUtil.arrToLinked(new int[]{1, 2, 3, 4, 5});
         //ListNode node1 = reverseBetween(node, 2, 4);
-        ListNode node2 = reverseBetween2(node, 2, 4);
-        //LinkedUtil.print(node1);
-        LinkedUtil.print(node2);
+        ListNode node1 = reverseBetween2(node, 2, 4);
+        LinkedUtil.print(node1);
     }
 
 }

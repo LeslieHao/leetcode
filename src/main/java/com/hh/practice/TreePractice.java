@@ -47,10 +47,6 @@ public class TreePractice {
         return root;
     }
 
-    public static void main(String[] args) {
-        TreeUtils.printTree(str2tree("4(2(3)(1))(6(5))"));
-    }
-
 
     public static void preOrder(TreeNode root) {
         // 先序遍历,根左右
@@ -163,5 +159,44 @@ public class TreePractice {
         return Math.max(l, r) + 1;
     }
 
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        while (true) {
+            if (p.val < root.val && q.val < root.val) {
+                // 目标节点在左子树
+                root = root.left;
+            } else if (p.val > root.val && q.val > root.val) {
+                // 目标节点在右子树
+                root = root.right;
+            } else {
+                return root;
+            }
+        }
+    }
 
+
+    public static void printOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        System.out.println(root);
+        printOrder(root.left);
+        System.out.println(root);
+        printOrder(root.right);
+        System.out.println(root);
+    }
+
+    public static int maxDepth2(TreeNode root){
+        if (root == null) {
+            return 0;
+        }
+        int left = maxDepth2(root.left);
+        int right = maxDepth(root.right);
+        return Math.max(left, right) + 1;
+    }
+
+
+
+    public static void main(String[] args) {
+        maxDepth2(TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5}));
+    }
 }

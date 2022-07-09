@@ -26,4 +26,10 @@ public class ListNode {
         return head;
     }
 
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                '}';
+    }
 }

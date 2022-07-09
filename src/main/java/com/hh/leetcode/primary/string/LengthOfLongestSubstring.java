@@ -1,5 +1,8 @@
 package com.hh.leetcode.primary.string;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度
  * <p>
@@ -17,7 +20,26 @@ package com.hh.leetcode.primary.string;
 public class LengthOfLongestSubstring {
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("tmmzuxt"));
+        System.out.println(lengthOfLongestSubstring1("abba"));
+    }
+
+    public static int lengthOfLongestSubstring1(String s) {
+        // 滑动窗口
+        char[] chars = s.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
+        int left = 0;
+        int maxLength = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if (map.containsKey(chars[i])) {
+                // 出现重复,有两种情况
+                // 1. 重复的点已经不在窗口内了
+                // 2. 重复的点还在窗口内
+                left = Math.max(left, map.get(chars[i]) + 1);
+            }
+            map.put(chars[i], i);
+            maxLength = Math.max(maxLength, i - left + 1);
+        }
+        return maxLength;
     }
 
     static int lengthOfLongestSubstring(String s) {

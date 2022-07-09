@@ -2,6 +2,8 @@ package com.hh.leetcode.primary.tree;
 
 import com.hh.leetcode.TreeNode;
 
+import java.util.Arrays;
+
 /**
  * 105. 从前序与中序遍历序列构造二叉树
  * 给定两个整数数组 preorder 和 inorder ，
@@ -20,8 +22,43 @@ import com.hh.leetcode.TreeNode;
  */
 public class BuildTree {
 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
 
-        return null;
+    /**
+     * 前序遍历的结果是: [1,2,4,5,3,6,7]
+     * 中序遍历的结果是: [4,2,5,1,6,3,7]
+     *
+     * 1 为根节点
+     * 245 为前序遍历左子树
+     * 367 为前序遍历右子树
+     *
+     * 425 为中序遍历左子树
+     * 637 为中序遍历右子树
+     *
+     * 4为左
+     * 5为右
+     *
+     *
+     *
+     */
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder.length == 0 || inorder.length == 0) {
+            return null;
+        }
+        // 前序遍历的第一个为当前子树的根节点
+        TreeNode treeNode = new TreeNode(preorder[0]);
+        for (int i = 0; i < inorder.length; i++) {
+            // 寻找根节点在中序遍历中的位置
+            if (preorder[0] == inorder[i]) {
+                int[] preLeft = Arrays.copyOfRange(preorder, 1, i + 1);
+                int[] preRight = Arrays.copyOfRange(preorder, i + 1, preorder.length);
+                int[] inLeft = Arrays.copyOfRange(inorder, 0, i);
+                int[] inRight = Arrays.copyOfRange(inorder, i + 1, inorder.length);
+                treeNode.left = buildTree(preLeft, inLeft);
+                treeNode.right = buildTree(preRight, inRight);
+                break;
+            }
+        }
+        return treeNode;
     }
+
 }

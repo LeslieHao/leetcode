@@ -85,4 +85,8 @@ public class HasPathSum {
         return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
     }
 
+    public static void main(String[] args) {
+        System.out.println(17737+27518+30375+3000);
+    }
+
 }
