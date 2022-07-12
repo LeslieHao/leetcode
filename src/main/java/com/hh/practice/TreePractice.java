@@ -12,6 +12,96 @@ import java.util.Deque;
  */
 public class TreePractice {
 
+    public static void main(String[] args) {
+        TreePractice practice = new TreePractice();
+        TreeNode root = TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5, 6, 7});
+        System.out.println(practice.lowestCommonAncestor2(root, new TreeNode(4), new TreeNode(6)));
+    }
+
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root.val == p.val || root.val == q.val) {
+            // 找到节点
+            return root;
+        }
+        // 左子树找
+        TreeNode left = lowestCommonAncestor2(root.left, p, q);
+        // 右子树找
+        TreeNode right = lowestCommonAncestor2(root.right, p, q);
+        if (left == null && right == null) {
+            // 当前root的子树不包含,返回上一层
+            return null;
+        }
+        if (left != null && right != null) {
+            //
+            return root;
+        }
+        if (left != null) {
+            // 只找到了左子树
+            return left;
+        } else {
+            // 只在有面找到
+            return right;
+        }
+    }
+
+    public int sumNumbers(TreeNode root) {
+        // 129. 求根节点到叶节点数字之和
+        // 深度优先递归
+        return dfs(root, 0);
+    }
+
+    public int sumNumbers2(TreeNode root) {
+        // 129. 求根节点到叶节点数字之和
+        // 非递归
+        if (root == null) {
+            return 0;
+        }
+        int res = 0;
+
+        Deque<TreeNode> nodeQueue = new ArrayDeque<>();
+
+        // 存放当前层的值
+        Deque<Integer> valueQueue = new ArrayDeque<>();
+
+        valueQueue.add(root.val);
+        nodeQueue.add(root);
+        while (!nodeQueue.isEmpty()) {
+            TreeNode poll = nodeQueue.poll();
+            Integer value = valueQueue.poll();
+            if (poll.left == null && poll.right == null) {
+                // 叶子节点
+                res += value;
+                continue;
+            }
+
+            if (poll.left != null) {
+                //
+                nodeQueue.add(poll.left);
+                valueQueue.add(value * 10 + poll.left.val);
+            }
+            if (poll.right != null) {
+                nodeQueue.add(poll.right);
+                valueQueue.add(value * 10 + poll.right.val);
+            }
+
+        }
+        return res;
+    }
+
+    private int dfs(TreeNode root, int num) {
+        if (root == null) {
+            return 0;
+        }
+
+        num = num * 10 + root.val;
+        if (root.left == null && root.right == null) {
+            // 叶子节点,返回
+            return num;
+        }
+        return dfs(root.left, num) + dfs(root.right, num);
+    }
+
     /**
      * 4(2(3)(1))(6(5))
      * <p>
@@ -185,7 +275,7 @@ public class TreePractice {
         System.out.println(root);
     }
 
-    public static int maxDepth2(TreeNode root){
+    public static int maxDepth2(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -195,8 +285,4 @@ public class TreePractice {
     }
 
 
-
-    public static void main(String[] args) {
-        maxDepth2(TreeUtils.transfer(new Integer[]{1, 2, 3, 4, 5}));
-    }
 }

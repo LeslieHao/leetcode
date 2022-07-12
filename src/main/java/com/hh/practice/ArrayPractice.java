@@ -9,20 +9,51 @@ import java.util.*;
 public class ArrayPractice {
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(insertSort(new int[]{2, 1, 3, 4, 3, 5, 2, 3, 10})));
+        ArrayPractice practice = new ArrayPractice();
+        System.out.println(practice.maxProfit1(new int[]{7, 1, 5, 3, 6, 4}));
     }
 
 
-    public static int[] insertSort(int[] nums){
+    public int maxProfit2(int[] prices) {
+        // 122. 买卖股票的最佳时机2 多次交易版
+        // 每天都买卖
+        // 贪心算法
+        int res = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            if (prices[i + 1] - prices[i] > 0) {
+                res += prices[i + 1] - prices[i];
+            }
+        }
+        return res;
+    }
+
+    public int maxProfit1(int[] prices) {
+        // 121. 买卖股票的最佳时机
+        int res = 0;
+        // 记录最低点,每次和最低点比较
+        int min = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < min) {
+                min = prices[i];
+            } else {
+                res = Math.max(res, prices[i] - min);
+            }
+        }
+
+        return res;
+    }
+
+
+    public static int[] insertSort(int[] nums) {
         // 插入排序
         for (int i = 1; i < nums.length; i++) {
             int curNums = nums[i];
-            int j = i-1;
+            int j = i - 1;
             while (j >= 0 && nums[j] > curNums) {
                 nums[j + 1] = nums[j];
                 j--;
             }
-            nums[j+1] = curNums;
+            nums[j + 1] = curNums;
         }
         return nums;
     }
