@@ -1,7 +1,5 @@
 package com.hh.leetcode.tree;
 
-import com.hh.leetcode.TreeNode;
-
 /**
  *
  * 100. 相同的树

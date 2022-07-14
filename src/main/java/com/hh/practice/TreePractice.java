@@ -1,6 +1,6 @@
 package com.hh.practice;
 
-import com.hh.leetcode.TreeNode;
+import com.hh.leetcode.tree.TreeNode;
 import com.hh.leetcode.tree.TreeUtils;
 
 import java.util.ArrayDeque;

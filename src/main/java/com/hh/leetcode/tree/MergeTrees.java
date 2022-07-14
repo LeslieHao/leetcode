@@ -1,7 +1,5 @@
 package com.hh.leetcode.tree;
 
-import com.hh.leetcode.TreeNode;
-
 /**
  * 合并二叉树
  * <p>

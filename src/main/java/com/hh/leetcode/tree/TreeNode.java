@@ -1,4 +1,4 @@
-package com.hh.leetcode;
+package com.hh.leetcode.tree;
 
 /**
  * @author HaoHao

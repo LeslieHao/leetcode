@@ -1,7 +1,5 @@
 package com.hh.leetcode.tree;
 
-import com.hh.leetcode.TreeNode;
-
 /**
  * 700. 二叉搜索树中的搜索
  * <p>

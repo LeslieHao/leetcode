@@ -1,7 +1,5 @@
 package com.hh.leetcode.tree;
 
-import com.hh.leetcode.TreeNode;
-
 /**
  * 剑指 Offer 54. 二叉搜索树的第k大节点
  *

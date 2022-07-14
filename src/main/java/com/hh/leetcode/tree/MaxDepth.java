@@ -1,7 +1,5 @@
 package com.hh.leetcode.tree;
 
-import com.hh.leetcode.TreeNode;
-
 import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 import java.util.Queue;

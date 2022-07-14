@@ -1,7 +1,5 @@
 package com.hh.leetcode.tree;
 
-import com.hh.leetcode.TreeNode;
-
 /**
  * 235. 二叉搜索树的最近公共祖先
  * <p>
