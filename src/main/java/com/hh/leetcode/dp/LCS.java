@@ -17,6 +17,35 @@ package com.hh.leetcode.dp;
  */
 public class LCS {
 
+    public static void main(String[] args) {
+        System.out.println(LCS2("abc", "ab"));
+    }
+
+    public static String LCS2(String str1, String str2) {
+        int[][] dp = new int[str1.length() + 1][str2.length() + 1];
+        int maxLength = 0;
+        int rightIndex = 0;
+        // 二维数组,斜着下去的是最长子串
+        for (int i = 0; i < str1.length(); i++) {
+            for (int j = 0; j < str2.length(); j++) {
+                // 找到第一个相等的,dp[i+1][j+1] 记录当前子串长度
+                if (str1.charAt(i) == str2.charAt(j)) {
+                    int curLength = dp[i][j] + 1;
+                    dp[i + 1][j + 1] = curLength;
+                    if (curLength > maxLength) {
+                        maxLength = curLength;
+                        rightIndex = i;
+                    }
+                } else {
+                    dp[i + 1][j + 1] = 0;
+                }
+            }
+        }
+
+        return str1.substring(rightIndex - maxLength+1, rightIndex+1);
+    }
+
+
     public static String LCS(String str1, String str2) {
         int[][] dp = new int[str1.length() + 1][str2.length() + 1];
         int maxLength = 0;
@@ -37,7 +66,5 @@ public class LCS {
         return str1.substring(rightIndex - maxLength + 1, rightIndex + 1);
     }
 
-    public static void main(String[] args) {
-        System.out.println(LCS("1AB2345CD", "12345EF"));
-    }
+
 }
